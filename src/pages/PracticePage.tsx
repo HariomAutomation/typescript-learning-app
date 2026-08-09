@@ -56,7 +56,7 @@ export function PracticePage() {
       <div style={{ display: 'grid', gap: 16 }}>
         {resolved.length === 0 && <p style={{ color: 'var(--text-3)' }}>No questions match the filters.</p>}
         {resolved.map(({ question }) => (
-          <QuestionCard key={question.id} question={question} />
+          <QuestionCard key={question.id} question={question} startEmpty />
         ))}
       </div>
     </div>

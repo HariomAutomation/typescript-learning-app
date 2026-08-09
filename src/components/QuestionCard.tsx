@@ -15,13 +15,13 @@ import {
   parseAssertions,
 } from '../utils/validate'
 
-export function QuestionCard({ question }: { question: Question }) {
+export function QuestionCard({ question, startEmpty = false }: { question: Question; startEmpty?: boolean }) {
   const { L, t } = useI18n()
   const progress = useProgress()
   const [selected, setSelected] = useState<number | null>(null)
   const [tfAnswer, setTfAnswer] = useState<boolean | null>(null)
   const [prediction, setPrediction] = useState('')
-  const [code, setCode] = useState(getInitialCode(question))
+  const [code, setCode] = useState(() => getInitialCode(question, startEmpty))
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none')
   const [showExplanation, setShowExplanation] = useState(false)
 
@@ -326,7 +326,8 @@ const TYPE_LABELS: Record<Question['type'], string> = {
   truefalse: 'True/False',
 }
 
-function getInitialCode(q: Question): string {
+function getInitialCode(q: Question, startEmpty: boolean): string {
+  if (startEmpty && q.type === 'code') return ''
   if (q.type === 'code') return q.starterCode
   if (q.type === 'bugfix') return q.buggyCode
   return ''

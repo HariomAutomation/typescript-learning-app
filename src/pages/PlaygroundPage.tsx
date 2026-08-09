@@ -5,23 +5,9 @@ import { useI18n } from '../i18n/LanguageContext'
 import { useCodeRunner } from '../hooks/useCodeRunner'
 import { inspectAst, transpileOnly } from '../lib/codeRunner'
 
-const BOOTSTRAP = `// TypeScript Playground — edit & press Run
-interface User {
-  name: string
-  age: number
-}
-
-function describe(u: User): string {
-  return \`\${u.name} is \${u.age} years old\`
-}
-
-const me: User = { name: 'Hari', age: 21 }
-console.log(describe(me))
-console.log('hello, world!')`
-
 export function PlaygroundPage() {
   const { t } = useI18n()
-  const [code, setCode] = useState(BOOTSTRAP)
+  const [code, setCode] = useState('')
   const { state } = useCodeRunner()
   const [tab, setTab] = useState<'output' | 'compile' | 'ast'>('output')
   const [visual, setVisual] = useState<{ kind: string; text: string; loading: boolean } | null>(null)
@@ -44,6 +30,11 @@ export function PlaygroundPage() {
     [code],
   )
 
+  const openTab = (next: 'output' | 'compile' | 'ast') => {
+    setTab(next)
+    if (next !== 'output') void fetchVisual(next)
+  }
+
   return (
     <div className="fade-up">
       <h1 style={{ fontSize: 28, marginBottom: 4 }}>{t('editor.title')}</h1>
@@ -54,13 +45,13 @@ export function PlaygroundPage() {
       <CodeRunPanel code={code} onCodeChange={setCode} height={340} />
 
       <div style={{ display: 'flex', gap: 8, margin: '18px 0 10px' }}>
-        <button className={`btn btn-sm ${tab === 'output' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => setTab('output')}>
+        <button className={`btn btn-sm ${tab === 'output' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => openTab('output')}>
           <TerminalSquare size={14} /> {t('editor.output')}
         </button>
-        <button className={`btn btn-sm ${tab === 'compile' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => void fetchVisual('compile')}>
+        <button className={`btn btn-sm ${tab === 'compile' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => openTab('compile')}>
           <BookOpen size={14} /> Compiled JS
         </button>
-        <button className={`btn btn-sm ${tab === 'ast' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => void fetchVisual('ast')}>
+        <button className={`btn btn-sm ${tab === 'ast' ? 'btn-primary' : 'btn-ghost'}`} onClick={() => openTab('ast')}>
           <GitBranch size={14} /> AST
         </button>
       </div>
