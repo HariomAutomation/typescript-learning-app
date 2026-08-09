@@ -3,29 +3,29 @@ import type { Chapter } from '../types'
 export const chapter05: Chapter = {
   id: 'ch05',
   number: 5,
-  title: { en: 'Generics: Type as a Parameter', hi: 'jenerik: taip input ke rup men' },
+  title: { en: 'Generics: Type as a Parameter', hi: 'Generics: Type ek parameter ke roop mein' },
   tagline: {
     en: 'Write once, work for every type — the heart of reusable code.',
-    hi: 'ek bar likho, hr taip ke lie — fir se istemal ka dil.',
+    hi: 'Ek baar likho, har type ke liye kaam kare — reusar code ka dil.',
   },
   color: '#fbbf24',
   objectives: [
-    { en: 'Introduce type parameters and constraints', hi: 'taip pairameetr aur constraints se prichy' },
-    { en: 'Build generic helpers and collections', hi: 'jenerik helpr aur klekshn' },
-    { en: 'Spot where inference supplies the type args', hi: 'imfrens se jenerik aarg aana' },
+    { en: 'Introduce type parameters and constraints', hi: 'Type parameters aur constraints se pehchan' },
+    { en: 'Build generic helpers and collections', hi: 'Generic helpers aur collections banao' },
+    { en: 'Spot where inference supplies the type args', hi: 'Jahan inference type args khud de deta hai, usse pehchano' },
   ],
   lessons: [
     {
       id: 'l5-1',
-      title: { en: 'The identity of a generic', hi: 'jenerik kee phchan' },
+      title: { en: 'The identity of a generic', hi: 'Generic ki pehchan' },
       minutes: 8,
       sections: [
         {
-          heading: { en: 'What a type parameter is', hi: 'taip pairameetr kya hota hai' },
+          heading: { en: 'What a type parameter is', hi: 'Type parameter kya hota hai' },
           paragraphs: [
             {
               en: 'A generic function parameterizes the types it uses. `identity<T>(v: T): T` returns exactly what you put in.',
-              hi: 'jenerik fnkshn apne taip ko pairameetr krta hai. `identity<T>(v: T): T` jo dalenge vhee lautata hai.',
+              hi: 'Generic function apne types ko parameterize karta hai. `identity<T>(v: T): T` jo aap daalte ho wahi return karta hai.',
             },
           ],
           blocks: [{
@@ -44,11 +44,11 @@ first([1, 2, 3]); // number | undefined
           }],
         },
         {
-          heading: { en: 'One function, many shapes', hi: 'ek fnkshn, kee aakar' },
+          heading: { en: 'One function, many shapes', hi: 'Ek function, kai shapes' },
           paragraphs: [
             {
               en: 'Without generics you would copy-paste per type. With them you write one source and the checker instantiates it per usage.',
-              hi: 'jenerik ke bina hr taip ke lie kod kopee krnee pdtee. jenerik se ek sors aur hr upyog ke lie vhee janch.',
+              hi: 'Generics ke bina har type ke liye code copy-paste karna padta. Generics se ek hi source likhte ho aur checker usse har usage ke hisaab se use karta hai.',
             },
           ],
         },
@@ -59,24 +59,24 @@ first([1, 2, 3]); // number | undefined
           type: 'code',
           difficulty: 'easy',
           points: 10,
-          prompt: { en: 'Write `last<T>(list)` that returns the last element.', hi: '`last<T>(list)` likhen jo aakhiree ttv lautae.' },
+          prompt: { en: 'Write `last<T>(list)` that returns the last element.', hi: '`last<T>(list)` likho jo last element return kare.' },
           starterCode: `export function last<T>(list: T[]): T | undefined {
   // TODO
 }`,
-          hint: { en: 'Use length - 1.', hi: 'length - 1 istemal kren.' },
+          hint: { en: 'Use length - 1.', hi: 'length - 1 use karo.' },
           testCode: `import { last } from './solution'
 console.log('Assert 1:', last([1, 2, 3]) === 3)
 console.log('Assert 2:', last([]) === undefined)
 console.log('Assert 3:', last(['a', 'b']) === 'b')
 `,
-          explanation: {"en":"Index length-1, and return undefined for the empty array.","hi":"length-1 pr indeks kren; khalee aire pr undefined."},
+          explanation: {"en":"Index length-1, and return undefined for the empty array.","hi":"Index length-1 karo; empty array ke liye undefined return karo."},
         },
         {
           id: 'q5-1-2',
           type: 'mcq',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'What does `identity` infer when given `[1, 2]`?', hi: '`identity` ko `[1, 2]` dene pr kaun-sa taip aaega?' },
+          prompt: { en: 'What does `identity` infer when given `[1, 2]`?', hi: '`identity` ko `[1, 2]` dene par kaunsa type infer hoga?' },
           code: `function identity<T>(v: T): T {}`,
           options: [
             { en: 'number[]', hi: 'number[]' },
@@ -85,21 +85,21 @@ console.log('Assert 3:', last(['a', 'b']) === 'b')
             { en: 'number | string', hi: 'number | string' },
           ],
           correctIndex: 0,
-          explanation: { en: 'T infers to the whole array type.', hi: 'T pura aire taip bn jata hai.' },
+          explanation: { en: 'T infers to the whole array type.', hi: 'T pura array type ban jata hai.' },
         },
       ],
     },
     {
       id: 'l5-2',
-      title: { en: 'Constraints & Multiple Parameters', hi: 'Constraints aur kee pairameetr' },
+      title: { en: 'Constraints & Multiple Parameters', hi: 'Constraints aur Multiple Parameters' },
       minutes: 9,
       sections: [
         {
-          heading: { en: 'extends bounds the shape', hi: 'extends kee seema' },
+          heading: { en: 'extends bounds the shape', hi: 'extends shape ko bound karta hai' },
           paragraphs: [
             {
               en: 'Constraints say "T must at least have these parts". Inside the generic you can only use the constrained features.',
-              hi: 'Constraint khta hai ki T ke pas km se km yh hona chahie. andr sirf constrained cheejen hee istemal ho sktee hain.',
+              hi: 'Constraint kehta hai ki T ke paas kam se kam yeh parts hone chahiye. Generic ke andar aap sirf constrained features hi use kar sakte ho.',
             },
           ],
           blocks: [{
@@ -112,11 +112,11 @@ describe({ name: 'book', pages: 300 }); // ok
           }],
         },
         {
-          heading: { en: 'Multiple type parameters', hi: 'ek sath kee taip pairameetr' },
+          heading: { en: 'Multiple type parameters', hi: 'Multiple type parameters' },
           paragraphs: [
             {
               en: 'Generics compose: pairs, maps, and lookups all take multiple type params and infer each independently.',
-              hi: 'Pairs, maps, lookups — sbhee kee taip pairameetr lete hain, hr ek apnee jgh imfr hota hai.',
+              hi: 'Generics compose hote hain: pairs, maps, lookups sab multiple type params lete hain, aur har ek apni jagah khud infer hota hai.',
             },
           ],
           blocks: [{
@@ -135,13 +135,13 @@ zip(['a', 'b'], [1, 2]); // [string, number][]
           type: 'truefalse',
           difficulty: 'easy',
           points: 10,
-          prompt: { en: 'Evaluate:', hi: 'kthn sty ya asty:' },
+          prompt: { en: 'Evaluate:', hi: 'True holo False:' },
           statement: {
             en: 'A generic constrained with `extends` can use only the properties declared in the constraint inside the body.',
-            hi: 'jenerik men constraint valee proprteej ke alava bodee men koee cheej uplbdh nheen hotee.',
+            hi: '`extends` se constrained generic apne body mein sirf wahi properties use kar sakta hai jo constraint mein declare hui hain.',
           },
           answer: true,
-          explanation: { en: 'The checker guarantees only the constraint inside.', hi: 'kmpailr bodee men kevl constraint ka hee bhrosa deta hai.' },
+          explanation: { en: 'The checker guarantees only the constraint inside.', hi: 'Compiler ko bharosa hota hai sirf constraint par, isliye body mein bhi wahi available hota hai.' },
         },
 
         {
@@ -149,8 +149,8 @@ zip(['a', 'b'], [1, 2]); // [string, number][]
           type: 'bugfix',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'lastOf() returns undefined for every list. Off-by-one!', hi: 'lastOf() har list ke liye undefined deta hai. Off-by-one!' },
-          hint: { en: 'length is one past the last valid index.', hi: 'length last valid index se ek aage hai.' },
+          prompt: { en: 'lastOf() returns undefined for every list. Off-by-one!', hi: 'lastOf() har list ke liye undefined de raha hai. Off-by-one!' },
+          hint: { en: 'length is one past the last valid index.', hi: 'length last valid index se ek aage hota hai.' },
           buggyCode: `export function lastOf<T extends { length: number }>(list: T): unknown {
   return list[list.length]
 }`,
@@ -160,7 +160,7 @@ zip(['a', 'b'], [1, 2]); // [string, number][]
           testCode: `import { lastOf } from './solution'
 console.log('Assert 1:', lastOf([1, 2, 3]) === 3)
 console.log('Assert 2:', lastOf('hello') === 'o')`,
-          explanation: { en: 'Indexes run 0..length-1, so the last element lives at length - 1.', hi: 'Index 0..length-1 tak chalte hain, toh last element length - 1 par hai.' },
+          explanation: { en: 'Indexes run 0..length-1, so the last element lives at length - 1.', hi: 'Index 0 se length-1 tak chalte hain, isliye last element length - 1 par hota hai.' },
         },
       ],
     },

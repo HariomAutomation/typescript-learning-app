@@ -3,29 +3,29 @@ import type { Chapter } from '../types'
 export const chapter03: Chapter = {
   id: 'ch03',
   number: 3,
-  title: { en: 'Functions in the Deep', hi: 'fnkshn: ghraee men' },
+  title: { en: 'Functions in the Deep', hi: 'Functions: deep dive' },
   tagline: {
     en: 'Parameters, returns, rest, overloads — the full contract toolkit.',
-    hi: 'pairameetr, ritrn, rest, ovrlod — pura anubndh tulkit.',
+    hi: 'Parameters, returns, rest, overloads — pura contract toolkit.',
   },
   color: '#22d3ee',
   objectives: [
-    { en: 'Model optional, default and rest parameters', hi: 'optional, difolt aur rest pairameetr modl krna' },
-    { en: 'Narrow return types with overloads', hi: 'ovrlod se ritrn taip ty krna' },
-    { en: 'Put never to work in control flow', hi: 'niyntrn prvah men never ka upyog' },
+    { en: 'Model optional, default and rest parameters', hi: 'Optional, default aur rest parameters model karo' },
+    { en: 'Narrow return types with overloads', hi: 'Overloads se return types target karo' },
+    { en: 'Put never to work in control flow', hi: 'Control flow mein never ka use' },
   ],
   lessons: [
     {
       id: 'l3-1',
-      title: { en: 'Parameter Recipes', hi: 'pairameetr resipee' },
+      title: { en: 'Parameter Recipes', hi: 'Parameter Recipes' },
       minutes: 8,
       sections: [
         {
-          heading: { en: 'Optional after required', hi: 'aavshyk ke bad optional' },
+          heading: { en: 'Optional after required', hi: 'Required ke baad optional' },
           paragraphs: [
             {
               en: 'Optional parameters must come after required ones; use default values to keep the signature clean.',
-              hi: 'optional pairameetr kee jgh aakhir men hotee hai; difolt man se signechr saf rhta hai.',
+              hi: 'Optional parameters hamesha required ke baad aate hain; default values se signature clean rehta hai.',
             },
           ],
           blocks: [{
@@ -39,11 +39,11 @@ greet('raw', true);    // ✅
           }],
         },
         {
-          heading: { en: 'Rest: never arrays by hand', hi: 'Rest: hath se arrays nheen' },
+          heading: { en: 'Rest: never arrays by hand', hi: 'Rest: arrays haath se nahi' },
           paragraphs: [
             {
               en: 'A rest parameter collects arbitrary count of values into a typed array.',
-              hi: 'Rest pairameetr mnmanee snkhya men vailyu ka ek taipd aire bna leta hai.',
+              hi: 'Rest parameter kitni bhi values ko ek typed array mein collect kar leta hai.',
             },
           ],
           blocks: [{
@@ -56,11 +56,11 @@ max(1, 9, 3); // 9
           }],
         },
         {
-          heading: { en: 'this types: callbacks are honest', hi: 'this taip: kolbaik men' },
+          heading: { en: 'this types: callbacks are honest', hi: 'This types: callbacks mein' },
           paragraphs: [
             {
               en: 'You can declare this parameters — the first pseudo-parameter with a type that scopes who can call the function.',
-              hi: 'phle pseudo-pairameetr se aap ghoshna krte hain ki is fnkshn ka this kaun ho skta hai.',
+              hi: 'Pehle pseudo-parameter se declare karte hain ki is function ka this kaun ho sakta hai.',
             },
           ],
         },
@@ -71,23 +71,23 @@ max(1, 9, 3); // 9
           type: 'code',
           difficulty: 'easy',
           points: 10,
-          prompt: { en: 'Write joinAll(sep, ...items) joining all items with the separator.', hi: 'joinAll(sep, ...items) likhen jo sbhee items ko seapretr se jode.' },
+          prompt: { en: 'Write joinAll(sep, ...items) joining all items with the separator.', hi: 'joinAll(sep, ...items) likho jo saare items ko separator ke saath jode.' },
           starterCode: `export function joinAll(sep: string, ...items: string[]): string {
   // TODO
 }`,
-          hint: { en: 'Array.prototype.join is your friend.', hi: 'Array.prototype.join istemal kren.' },
+          hint: { en: 'Array.prototype.join is your friend.', hi: 'Array.prototype.join use karo.' },
           testCode: `import { joinAll } from './solution'
 console.log('Assert 1:', joinAll('-', 'a', 'b', 'c') === 'a-b-c')
 console.log('Assert 2:', joinAll(',', 'x') === 'x')
 `,
-          explanation: {"en":"Array.join is the one-liner core.","hi":"Array.join hee ek-lain upay hai."},
+          explanation: {"en":"Array.join is the one-liner core.","hi":"Array.join hi ek-liner ka core hai."},
         },
         {
           id: 'q3-1-2',
           type: 'mcq',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'What is the type of `toppings` inside the function?', hi: 'fnkshn ke andr `toppings` ka taip kya hai?' },
+          prompt: { en: 'What is the type of `toppings` inside the function?', hi: 'Function ke andar `toppings` ka type kya hai?' },
           code: `function buildPizza(size: number, ...toppings: string[]) {}`,
           options: [
             { en: 'string[]', hi: 'string[]' },
@@ -96,30 +96,30 @@ console.log('Assert 2:', joinAll(',', 'x') === 'x')
             { en: 'readonly string[]', hi: 'readonly string[]' },
           ],
           correctIndex: 0,
-          explanation: { en: 'Rest parameters always produce an array of the given type.', hi: 'rest pairameetr hmesha ek aire bnata hai.' },
+          explanation: { en: 'Rest parameters always produce an array of the given type.', hi: 'Rest parameters hamesha diye gaye type ka array banate hain.' },
         },
       ],
     },
     {
       id: 'l3-2',
-      title: { en: 'Return Types & Overloads', hi: 'ritrn taip aur ovrlod' },
+      title: { en: 'Return Types & Overloads', hi: 'Return Types aur Overloads' },
       minutes: 9,
       sections: [
         {
-          heading: { en: 'Inference vs annotations on returns', hi: 'imfrens bnam enoteshn' },
+          heading: { en: 'Inference vs annotations on returns', hi: 'Returns par inference vs annotations' },
           paragraphs: [
             {
-              en: 'TypeScript infers returns. Annotate when the logic complex or contract long-lived. An explicit return type is also a great bisect during refactors.',
-              hi: 'TypeScript ritrn imfr krta hai. jtil ya lmbe jeevn vale fnkshnon pr spsht ritrn likhen.',
+              en: 'TypeScript infers returns. Annotate when the approach is complex or contract is long-lived. An explicit return type also helps during refactors.',
+              hi: 'TypeScript returns khud infer karta hai. Complex ya long-lived contracts par explicit return type likhna accha hai, refactor ke waqt bhi madad karta hai.',
             },
           ],
         },
         {
-          heading: { en: 'Function overloads: one name, many signatures', hi: 'fnkshn ovrlod: ek nam, kee signechr' },
+          heading: { en: 'Function overloads: one name, many signatures', hi: 'Function overloads: ek naam, kai signatures' },
           paragraphs: [
             {
-              en: 'Overloads list several call signatures above the implementation. The implementation signature is not part of the public API.',
-              hi: 'ovrlod ka kol signechr suchee oopr rhtee hai; impleementeshn signechr pblik API ka hissa nheen.',
+              en: 'Overloads let you list several call signatures above the implementation. The implementation signature is not part of the public API.',
+              hi: 'Overloads implementation ke upar kai call signatures likhne dete hain. Implementation signature public API ka hissa nahi hota.',
             },
           ],
           blocks: [{
@@ -135,11 +135,11 @@ area('square', 3); // 9
           }],
         },
         {
-          heading: { en: 'never in the return seat', hi: 'ritrn seet pr never' },
+          heading: { en: 'never in the return seat', hi: 'Return position par never' },
           paragraphs: [
             {
-              en: 'A function that always throws, or terminates, returns never — the bottom type that refines unions to exhaustion.',
-              hi: 'hmesha throw ya bnd krne vale fnkshn kbhee lautte hain never — sbse neeche vala taip jo bhed krta hai.',
+              en: 'A function that always throws, or never returns, returns never — the bottom type that refines unions to exhaustion.',
+              hi: 'Jo function hamesha throw karta hai ya return hi nahi karta, uska return type never hota hai — bottom type jo unions ko exhaustively khatam karta hai.',
             },
           ],
         },
@@ -150,10 +150,10 @@ area('square', 3); // 9
           type: 'truefalse',
           difficulty: 'easy',
           points: 10,
-          prompt: { en: 'Evaluate:', hi: 'sty ya asty:' },
-          statement: { en: 'The implementation signature of an overloaded function is always part of the public API.', hi: 'ovrlod fnkshn ka impleementeshn signechr parlik API ka hmesha hissa hota hai.' },
+          prompt: { en: 'Evaluate:', hi: 'True ya False:' },
+          statement: { en: 'The implementation signature of an overloaded function is always part of the public API.', hi: 'Overloaded function ka implementation signature hamesha public API ka hissa hota hai.' },
           answer: false,
-          explanation: { en: 'Only the overload signatures are exposed; implementation is internal.', hi: 'kevl ovrlod signechr dikhte hain; impleementeshn aantrik hota hai.' },
+          explanation: { en: 'Only the overload signatures are exposed; implementation is internal.', hi: 'Sirf overload signatures expose hote hain; implementation internal hota hai.' },
         },
 
         {
@@ -161,7 +161,7 @@ area('square', 3); // 9
           type: 'bugfix',
           difficulty: 'easy',
           points: 10,
-          prompt: { en: 'titleCase() should capitalise only the first letter. Fix it.', hi: 'titleCase() ko sirf pehla letter bada karna chahiye. Fix karo.' },
+          prompt: { en: 'titleCase() should capitalise only the first letter. Fix it.', hi: 'titleCase() ko sirf pehla letter capital karna chahiye. Fix karo.' },
           hint: { en: 'The rest of the word must be lowercase.', hi: 'Baaki ka word lowercase hona chahiye.' },
           buggyCode: `export function titleCase(name: string): string {
   return name[0] + name.slice(1).toUpperCase()
@@ -172,7 +172,7 @@ area('square', 3); // 9
           testCode: `import { titleCase } from './solution'
 console.log('Assert 1:', titleCase('jAyA') === 'Jaya')
 console.log('Assert 2:', titleCase('RUPA') === 'Rupa')`,
-          explanation: { en: 'slice(1).toUpperCase() makes the whole tail capital; the fix lowercases the tail instead.', hi: 'slice(1).toUpperCase() pura tail capital kar deta hai; fix tail ko lowercase karta hai.' },
+          explanation: { en: 'slice(1).toUpperCase() makes the whole tail capital; the fix lowercases the tail instead.', hi: 'slice(1).toUpperCase() pura tail capital kar deta hai; fix mein tail ko lowercase kiya gaya hai.' },
         },
       ],
     },

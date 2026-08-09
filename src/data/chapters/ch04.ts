@@ -3,29 +3,29 @@ import type { Chapter } from '../types'
 export const chapter04: Chapter = {
   id: 'ch04',
   number: 4,
-  title: { en: 'Narrowing & Control Flow', hi: 'Narrowing aur kntrol flo' },
+  title: { en: 'Narrowing & Control Flow', hi: 'Narrowing aur Control Flow' },
   tagline: {
     en: 'The compiler shrinks unions as your code checks — learn to guide it.',
-    hi: 'chek krte hee kmpailr yuniyn ko chhota krta hai — seekhen use rah dena.',
+    hi: 'Jaise hi aap checks karte ho, compiler union ko chhota karta jaata hai — use guide karna seekho.',
   },
   color: '#34d399',
   objectives: [
-    { en: 'Understand the narrowing mental model', hi: 'narrowing ka mansik modl' },
-    { en: 'Use typeof, truthiness, in, and instanceof', hi: 'typeof, truthiness, in aur instanceof' },
-    { en: 'Build exhaustiveness with never', hi: 'never ke sath puree kvrej' },
+    { en: 'Understand the narrowing mental model', hi: 'Narrowing ka mental model samjho' },
+    { en: 'Use typeof, truthiness, in, and instanceof', hi: 'typeof, truthiness, in aur instanceof use karo' },
+    { en: 'Build exhaustiveness with never', hi: 'never ke saath exhaustiveness banao' },
   ],
   lessons: [
     {
       id: 'l4-1',
-      title: { en: 'Guards & the narrow mental model', hi: 'gard aur narrowing ka modl' },
+      title: { en: 'Guards & the narrow mental model', hi: 'Guards aur narrowing ka model' },
       minutes: 10,
       sections: [
         {
-          heading: { en: 'The narrowing mental model', hi: 'narrowing ka mansik modl' },
+          heading: { en: 'The narrowing mental model', hi: 'Narrowing ka mental model' },
           paragraphs: [
             {
               en: 'After a control-flow check, TypeScript narrows a union to the subset that survived it. Example: typeof on a string | number narrows the else-branch to number.',
-              hi: 'hr chek ke bad TypeScript yuniyn ko chhantta hai jo chek se bchta hai. jaise typeof vale if ke else men sndeh number rh jata hai.',
+              hi: 'Har control-flow check ke baad TypeScript union ko chhant kar wohi subset rakhta hai jo check se bachta hai. Jaise: string | number par typeof check karne par else-branch mein number reh jata hai.',
             },
           ],
           blocks: [{
@@ -39,11 +39,11 @@ export const chapter04: Chapter = {
           }],
         },
         {
-          heading: { en: 'Truthiness is a guard', hi: 'Truthy-chek bhee ek gard hai' },
+          heading: { en: 'Truthiness is a guard', hi: 'Truthy check bhi ek guard hai' },
           paragraphs: [
             {
               en: 'If in a truthy branch → TS excludes falsy values: undefined, null, 0, "", NaN.',
-              hi: 'Truthy valee shakha men undefined/null/0/""/NaN kt jate hain.',
+              hi: 'Truthy branch mein TypeScript falsy values — undefined, null, 0, "", NaN — ko remove kar deta hai.',
             },
           ],
           blocks: [{
@@ -59,8 +59,8 @@ export const chapter04: Chapter = {
           heading: { en: 'in and instanceof', hi: 'in aur instanceof' },
           paragraphs: [
             {
-              en: '"property" in obj narrows objects by presence; instanceof narrows by prototype chain.',
-              hi: '"property" in obj proprtee kee maujudgee se chhantta hai; instanceof prototaip chen se.',
+              en: '"property" in obj narrows objects by property presence; instanceof narrows by prototype chain.',
+              hi: '"property" in obj objects ko property ki maujoodgi se narrow karta hai; instanceof prototype chain se narrow karta hai.',
             },
           ],
         },
@@ -71,7 +71,7 @@ export const chapter04: Chapter = {
           type: 'output',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'What prints to the console?', hi: 'knsol pr kya chhpega?' },
+          prompt: { en: 'What prints to the console?', hi: 'Console par kya print hoga?' },
           code: `function classify(val: string | null): string {
   if (!val) return 'empty';
   return val.trim().length > 3 ? 'long' : 'short';
@@ -79,14 +79,14 @@ export const chapter04: Chapter = {
 console.log(classify('hi'), classify(null), classify('hello'));
 `,
           expected: 'short empty long',
-          explanation: { en: 'Falsy null → "empty"; then trim/length branches decide.', hi: 'Falsy null → "empty"; bakee lmbaee ty krtee hai.' },
+          explanation: { en: 'Falsy null → "empty"; then trim/length branches decide.', hi: 'Falsy null → "empty"; phir length decide kar deti hai.' },
         },
         {
           id: 'q4-1-2',
           type: 'mcq',
           difficulty: 'hard',
           points: 25,
-          prompt: { en: 'After the first if, what is the type of `x` in the else?', hi: 'phle if ke bad else men `x` ka taip kya hai?' },
+          prompt: { en: 'After the first if, what is the type of `x` in the else?', hi: 'Pehle if ke baad else mein `x` ka type kya hai?' },
           code: `function f(x: number | string | null) {
   if (typeof x === 'number') return x * 2;
   // type of x here:
@@ -98,21 +98,21 @@ console.log(classify('hi'), classify(null), classify('hello'));
             { en: 'unknown', hi: 'unknown' },
           ],
           correctIndex: 0,
-          explanation: { en: 'The number branch returned, so the rest is string | null.', hi: 'number valee shakha laut gee, peechhe string | null bchta hai.' },
+          explanation: { en: 'The number branch returned, so the rest is string | null.', hi: 'Number wali branch return ho gayi, to peechhe string | null reh jata hai.' },
         },
       ],
     },
     {
       id: 'l4-2',
-      title: { en: 'Discriminated Unions & Exhaustiveness', hi: 'Discriminated yuniyn aur Exhaustiveness' },
+      title: { en: 'Discriminated Unions & Exhaustiveness', hi: 'Discriminated Unions aur Exhaustiveness' },
       minutes: 9,
       sections: [
         {
-          heading: { en: 'The discriminated union pattern', hi: 'discriminated yuniyn paitrn' },
+          heading: { en: 'The discriminated union pattern', hi: 'Discriminated union pattern' },
           paragraphs: [
             {
               en: 'Give each member a literal discriminant property; switching on it gives you full narrowing in every branch.',
-              hi: 'hr sdsy ko ek litrl diskriminent proprtee den; us pr switch krte hee hr branch men puree narrowing miltee hai.',
+              hi: 'Har member ko ek literal discriminant property do; us par switch karne se, baaki harr branch mein full narrowing milti hai.',
             },
           ],
           blocks: [{
@@ -133,11 +133,11 @@ function handle(e: Event): string {
           }],
         },
         {
-          heading: { en: 'Exhaustiveness with never', hi: 'never ke sath smpurnta' },
+          heading: { en: 'Exhaustiveness with never', hi: 'Never ke saath exhaustiveness' },
           paragraphs: [
             {
-              en: 'Add a default case that assigns the remaining event to never — if you add a new variant later, the compiler screams wherever you forgot a branch.',
-              hi: 'default kes men bche hue event ko never asain kren— nya verient jodte hee bhulee huee jghen kmpailr dikhata hai.',
+              en: 'Add a default case that assigns the remaining event to never — if you add a new variant later, the compiler flags every branch you forgot to update.',
+              hi: 'Ek default case jodo jo baaki bache huye event ko never assign kare — agar baad mein naya variant jodte ho, to compiler har woh jagah dikha dega jahan branch miss hui hai.',
             },
           ],
           blocks: [{
@@ -159,10 +159,10 @@ function handle(e: Event): string {
           type: 'truefalse',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'Evaluate:', hi: 'kthn sty ya asty:' },
-          statement: { en: 'Property `kind` with literal values is a valid discriminant for a union.', hi: 'litrl vailyu vala `kind` proprtee diskriminent ho skta hai.' },
+          prompt: { en: 'Evaluate:', hi: 'True ya False:' },
+          statement: { en: 'Property `kind` with literal values is a valid discriminant for a union.', hi: 'Literal values wali `kind` property ek valid discriminant ho sakti hai.' },
           answer: true,
-          explanation: { en: 'A single common property with distinct literal values is exactly a discriminant.', hi: 'ek samany litikl-man valee proprtee hee discriminant khlatee hai.' },
+          explanation: { en: 'A single common property with distinct literal values is exactly a discriminant.', hi: 'Distinct literal values wali ek common property hi discriminant kehlati hai.' },
         },
         {
           id: 'q4-2-2',
@@ -171,7 +171,7 @@ function handle(e: Event): string {
           points: 25,
           prompt: {
             en: 'Write area(shape) for the circle/square discriminated union below.',
-            hi: 'neeche vale circle/square yuniyn ke lie area() likhen.',
+            hi: 'Neeche wale circle/square union ke liye area() likho.',
           },
           starterCode: `type CircleShape = { kind: 'circle'; radius: number }
 type SquareShape = { kind: 'square'; side: number }
@@ -180,12 +180,12 @@ type Shape = CircleShape | SquareShape
 export function area(shape: Shape): number {
   // TODO
 }`,
-          hint: { en: 'Discriminated narrowing lets radius/side be accessed safely.', hi: 'Discriminant narrowing se radius/side surkshit milte hain.' },
+          hint: { en: 'Discriminated narrowing lets radius/side be accessed safely.', hi: 'Discriminant narrowing se radius/side safely access hote hain.' },
           testCode: `import { area } from './solution'
 console.log('Assert 1:', area({ kind: 'circle', radius: 1 }) === Math.PI)
 console.log('Assert 2:', area({ kind: 'square', side: 4 }) === 16)
 `,
-          explanation: {"en":"Switch on the kind discriminant then use radius/side.","hi":"kind pr switch krke radius/side istemal kren."},
+          explanation: {"en":"Switch on the kind discriminant then use radius/side.","hi":"Kind par switch karke radius/side use karo."},
         },
 
         {
@@ -193,8 +193,8 @@ console.log('Assert 2:', area({ kind: 'square', side: 4 }) === 16)
           type: 'bugfix',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'area() of a square returns NaN. The switch is missing a case.', hi: 'square ka area NaN deta hai. switch mein case missing hai.' },
-          hint: { en: 'radial is not defined on the square side; use the square case + default fallback.', hi: 'Square par radius nahi hota; square case aur default fallback istemal karo.' },
+          prompt: { en: 'area() of a square returns NaN. The switch is missing a case.', hi: 'Square ka area NaN de raha hai. Switch mein case missing hai.' },
+          hint: { en: 'radial is not defined on the square side; add the square case and return there.', hi: 'Square par radius nahi hota; square case jodo aur wahi return karo.' },
           buggyCode: `export type Shape =
   | { kind: 'circle'; radius: number }
   | { kind: 'square'; side: number }
@@ -221,7 +221,7 @@ export function area(shape: Shape): number {
           testCode: `import { area } from './solution'
 console.log('Assert 1:', area({ kind: 'circle', radius: 1 }) === Math.PI)
 console.log('Assert 2:', area({ kind: 'square', side: 4 }) === 16)`,
-          explanation: { en: 'After the circle case, square objects fell through to the circle formula — the fix adds the missing case and exhaustive return.', hi: 'circle case ke baad square wale circle formula mein ghir jaate the; fix mein missing case joda gaya hai.' },
+          explanation: { en: 'After the circle case, square objects fell through to the circle formula — the fix adds the missing case and exhaustive return.', hi: 'Circle case ke baad square objects circle formula mein gir jate the; fix mein missing case jod kar exhaustive return kiya gaya hai.' },
         },
       ],
     },

@@ -3,16 +3,16 @@ import type { Chapter } from '../types'
 export const chapter09: Chapter = {
   id: 'ch09',
   number: 9,
-  title: { en: 'Advanced Types: keyof, Mapped & Conditional', hi: 'unnt taip: keyof, Mapped aur Conditional' },
+  title: { en: 'Advanced Types: keyof, Mapped & Conditional', hi: 'Advanced Types: keyof, Mapped aur Conditional' },
   tagline: {
     en: 'Transform types like data — the type-level toolbox.',
-    hi: 'deta kee trh taip ko bdlen — taip-str ka tulboks.',
+    hi: 'Types ko data ki tarah transform karo — type-level toolbox.',
   },
   color: '#22d3ee',
   objectives: [
-    { en: 'Extract keys and value classes with keyof / indexed access', hi: 'keyof se kunjiyan nikalna' },
-    { en: 'Map over properties with mapped types', hi: 'maipd taips se proprtee bdlna' },
-    { en: 'Branch types with conditional types', hi: 'kndeeshnl taips se shakhaen' },
+    { en: 'Extract keys and value types with keyof / indexed access', hi: 'keyof / indexed access se keys aur value types nikalo' },
+    { en: 'Map over properties with mapped types', hi: 'Mapped types se properties par map karo' },
+    { en: 'Branch types with conditional types', hi: 'Conditional types se types branch karo' },
   ],
   lessons: [
     {
@@ -21,11 +21,11 @@ export const chapter09: Chapter = {
       minutes: 8,
       sections: [
         {
-          heading: { en: 'Keys as a type', hi: 'kunjiyan ek taip' },
+          heading: { en: 'Keys as a type', hi: 'Keys ek type ke roop mein' },
           paragraphs: [
             {
               en: '`keyof` turns an object type into a union of its keys; indexed access `T["key"]` fetches the value type of a key.',
-              hi: '`keyof` kisee objekt taip kee kunjiyon ka yuniyn bnata hai; `T["key"]` kunjee kee vailyu taip lata hai.',
+              hi: '`keyof` object type ko uski keys ka union bana deta hai; indexed access `T["key"]` kisi key ki value type nikal leta hai.',
             },
           ],
           blocks: [{
@@ -55,31 +55,31 @@ function get<K extends keyof Config>(c: Config, k: K): Config[K] {
             { en: 'string', hi: 'string' },
           ],
           correctIndex: 0,
-          explanation: { en: 'keyof yields the union of property names.', hi: 'keyof proprtee namon ka yuniyn deta hai.' },
+          explanation: { en: 'keyof yields the union of property names.', hi: 'keyof property names ka union deta hai.' },
         },
         {
           id: 'q9-1-2',
           type: 'truefalse',
           difficulty: 'easy',
           points: 10,
-          prompt: { en: 'Evaluate:', hi: 'kthn sty ya asty:' },
-          statement: { en: '`Type["property"]` is called indexed access and returns the property\'s type.', hi: '`Type["property"]` ko indexed access khte hain aur yh us proprtee ka taip lautata hai.' },
+          prompt: { en: 'Evaluate:', hi: 'True ya False:' },
+          statement: { en: '`Type["property"]` is called indexed access and returns the property\'s type.', hi: '`Type["property"]` ko indexed access kehte hain aur wo us property ka type return karta hai.' },
           answer: true,
-          explanation: { en: 'Yes — exactly how Type["k"] reads value types.', hi: 'shee — Type["k"] se vailyu taip milta hai.' },
+          explanation: { en: 'Yes — exactly how Type["k"] reads value types.', hi: 'Haan — Type["k"] se value type nikalta hai.' },
         },
       ],
     },
     {
       id: 'l9-2',
-      title: { en: 'Mapped Types & Conditional Types', hi: 'Mapped aur Conditional taips' },
+      title: { en: 'Mapped Types & Conditional Types', hi: 'Mapped Types aur Conditional Types' },
       minutes: 9,
       sections: [
         {
-          heading: { en: 'Mapped types transform each key', hi: 'hr kunjee pr taip-bdlav' },
+          heading: { en: 'Mapped types transform each key', hi: 'Mapped types har key ko transform karte hain' },
           paragraphs: [
             {
               en: 'Write `{ [K in keyof T]: ... }` to build a new type by transforming every property — read partial, required, readonly from this recipe.',
-              hi: '`{ [K in keyof T]: ... }` se hr proprtee bdlkr nya taip bnta hai — Partial, Required, Readonly isee kism ke hain.',
+              hi: '`{ [K in keyof T]: ... }` likh kar har property ko transform karke naya type banao — Partial, Required, Readonly isi recipe se bane hain.',
             },
           ],
           blocks: [{
@@ -93,11 +93,11 @@ type MaybeUser = Nullable<User>;  // { id: number | null; name: string | null }
           }],
         },
         {
-          heading: { en: 'Conditional types branch on types', hi: 'taip pr shakhaen (conditional types)' },
+          heading: { en: 'Conditional types branch on types', hi: 'Conditional types types par branch karte hain' },
           paragraphs: [
             {
               en: '`T extends U ? X : Y` selects between two types. With infer inside, you can also unwrap generics — e.g. extract an array element type.',
-              hi: '`T extends U ? X : Y` do taipon ke beech chunta hai; infer ke sath jenerik ko kholkr andr kee taip nikal skte hain.',
+              hi: '`T extends U ? X : Y` do types ke beech mein select karta hai; andar infer ke saath generics ko unwrap kar ke internal type bhi nikal sakte ho.',
             },
           ],
           blocks: [{
@@ -113,12 +113,12 @@ type C = Widen<'hi'>;         // string
         },
       ],
       questions: [
-{
+        {
           id: 'q9-2-1',
           type: 'mcq',
           difficulty: 'hard',
           points: 25,
-          prompt: { en: 'What is the type of `Box<number[]>`?', hi: '`Box<number[]>` ka taip kya hai?' },
+          prompt: { en: 'What is the type of `Box<number[]>`?', hi: '`Box<number[]>` ka type kya hai?' },
           code: `type Box<T> = T extends number ? Box<T> : [T];`,
           options: [
             { en: '[number[]]', hi: '[number[]]' },
@@ -129,7 +129,7 @@ type C = Widen<'hi'>;         // string
           correctIndex: 0,
           explanation: {
             en: 'number[] does not extend number, so the conditional picks the false branch: [T] = [number[]].',
-            hi: 'number[] ,number ko extend nheen krta islie conditional tyupl [number[]] chunta hai.',
+            hi: 'number[] number ko extend nahi karta, to conditional array type [number[]] choose karta hai.',
           },
         },
         {
@@ -137,10 +137,10 @@ type C = Widen<'hi'>;         // string
           type: 'truefalse',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'Evaluate:', hi: 'kthn sty ya asty:' },
-          statement: { en: '`infer` can only be used inside conditional types.', hi: '`infer` sirf conditional types ke andr upyog ho skta hai.' },
+          prompt: { en: 'Evaluate:', hi: 'True ya False:' },
+          statement: { en: '`infer` can only be used inside conditional types.', hi: '`infer` sirf conditional types ke andar use ho sakta hai.' },
           answer: true,
-          explanation: { en: 'infer is declared in the extends clause to capture a part of T.', hi: 'infer extends ke bhag men aakr T ka ek hissa pkdta hai.' },
+          explanation: { en: 'infer is declared in the extends clause to capture a part of T.', hi: 'infer extends clause mein declare hota hai, jisse T ka hissa capture hota hai.' },
         },
 
         {
@@ -148,8 +148,8 @@ type C = Widen<'hi'>;         // string
           type: 'bugfix',
           difficulty: 'medium',
           points: 15,
-          prompt: { en: 'prefer() returns the opposite branch of what it should.', hi: 'prefer() galat branch return karta hai.' },
-          hint: { en: 'When the flag matches the first arg, it should also return the first arg.', hi: 'Jab flag first arg hai, tab first arg return ho.' },
+          prompt: { en: 'prefer() returns the opposite branch of what it should.', hi: 'prefer() ulat branch return kar raha hai.' },
+          hint: { en: 'When the flag matches the first arg, it should also return the first arg.', hi: 'Jab flag true ho, to first argument return hona chahiye.' },
           buggyCode: `export function prefer(check: boolean, a: string, b: string): string {
   return check ? b : a
 }`,
@@ -159,7 +159,7 @@ type C = Widen<'hi'>;         // string
           testCode: `import { prefer } from './solution'
 console.log('Assert 1:', prefer(true, 'on', 'off') === 'on')
 console.log('Assert 2:', prefer(false, 'on', 'off') === 'off')`,
-          explanation: { en: 'The ternary was inverted: true-branch returned b; the fix returns a when check is true.', hi: 'Ternary ulta tha: true hone par b wapas aata tha; fix men check true par a return hota hai.' },
+          explanation: { en: 'The ternary was inverted: true-branch returned b; the fix returns a when check is true.', hi: 'Ternary ulta tha: true hone par b return hota tha; fix mein check true hone par a return hota hai.' },
         },
       ],
     },

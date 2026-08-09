@@ -106,7 +106,7 @@ export function QuestionCard({ question, startEmpty = false }: { question: Quest
         <CodeChallenge code={code} setCode={setCode} onRun={handleCodeRun} runState={runState} />
       )}
       {question.type === 'bugfix' && (
-        <CodeBlock code={question.fixedCode} title={{ en: 'Fixed reference', hi: 'shee snskrn' }} />
+        <CodeBlock code={question.fixedCode} title={{ en: 'Fixed version', hi: 'Fixed version' }} />
       )}
 
       {!answered && feedback === 'wrong' && (

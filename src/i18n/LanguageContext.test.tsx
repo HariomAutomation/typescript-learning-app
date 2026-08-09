@@ -42,7 +42,7 @@ describe('LanguageContext', () => {
       await user.click(screen.getByText('to-hi'))
     })
     expect(screen.getByTestId('locale').textContent).toBe('hi')
-    expect(screen.getByTestId('t').textContent).toBe('seekhna shuru kren')
+    expect(screen.getByTestId('t').textContent).toBe('Learning shuru karo')
     expect(localStorage.getItem('tsma-locale')).toBe('hi')
   })
 

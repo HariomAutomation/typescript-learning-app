@@ -17,33 +17,33 @@ export function LandingPage() {
   const features: Feature[] = [
     {
       icon: <BookOpen size={18} />,
-      title: { en: '10 chapters, 60+ lessons', hi: '10 adhyay, 60+ path' },
-      text: { en: 'A structured bilingual curriculum from first principles to advanced types.', hi: 'shuruaat se unnt taips tk ka dvibhashee pathykrm.' },
+      title: { en: '10 chapters, 60+ lessons', hi: '10 chapters, 60+ lessons' },
+      text: { en: 'A structured bilingual curriculum from first principles to advanced types.', hi: 'First principles se advanced types tak ka structured bilingual curriculum.' },
     },
     {
       icon: <Swords size={18} />,
-      title: { en: 'Practice Arena', hi: 'abhyas kshetr' },
-      text: { en: 'MCQs, output prediction, bug-fixes and real code challenges — graded instantly.', hi: 'MCQ, aautput bhvishyvanee, bg fiks aur aslee kod chunautiyan.' },
+      title: { en: 'Practice Arena', hi: 'Practice Arena' },
+      text: { en: 'MCQs, output prediction, bug-fixes and real code challenges — graded instantly.', hi: 'MCQs, output prediction, bug-fixes aur real code challenges — instant results ke saath.' },
     },
     {
       icon: <Code2 size={18} />,
-      title: { en: 'Live playground', hi: 'laiv plegraund' },
-      text: { en: 'Run TypeScript in your browser inside a safe worker sandbox with a 2.5s timeout.', hi: 'surkshit vrkr saindboks men braujr men hee TypeScript chlaen.' },
+      title: { en: 'Live playground', hi: 'Live playground' },
+      text: { en: 'Run TypeScript in your browser inside a safe worker sandbox with a 2.5s timeout.', hi: 'TypeScript ko browser mein hi chalao, safe worker sandbox ke andar — 2.5s timeout ke saath.' },
     },
     {
       icon: <Rocket size={18} />,
-      title: { en: 'Behind the scenes', hi: 'prde ke peechhe' },
-      text: { en: 'See the emitted JavaScript and the AST tree for every example.', hi: 'hr udahrn kee jnnee JavaScript aur AST tree dekhie.' },
+      title: { en: 'Behind the scenes', hi: 'Behind the scenes' },
+      text: { en: 'See the emitted JavaScript and the AST tree for every example.', hi: 'Har example ka emitted JavaScript aur AST tree dekho.' },
     },
     {
       icon: <Languages size={18} />,
-      title: { en: 'English + Hinglish', hi: 'angrejee + Hinglish' },
-      text: { en: 'Flip the entire app UI and content between the two languages.', hi: 'pure aip ko do bhashaon ke beech svich kren.' },
+      title: { en: 'English + Hinglish', hi: 'English + Hinglish' },
+      text: { en: 'Flip the entire app UI and content between the two languages.', hi: 'Poori app UI aur content ko do languages ke beech flip karo.' },
     },
     {
       icon: <Zap size={18} />,
-      title: { en: 'XP, streaks & progress', hi: 'XP, streek aur prgti' },
-      text: { en: 'Everything is tracked locally — nothing leaves your device.', hi: 'sb kuchh sthaneey rup se traik — kuchh bhee bahr nheen jata.' },
+      title: { en: 'XP, streaks & progress', hi: 'XP, streaks aur progress' },
+      text: { en: 'Everything is tracked locally — nothing leaves your device.', hi: 'Sab kuch locally track hota hai — kuch bhi device se bahar nahi jata hai.' },
     },
   ]
 
